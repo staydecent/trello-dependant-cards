@@ -4,6 +4,7 @@
 	<script>
 		TrelloPowerUp.initialize({
 			'card-badges': function(t, card) {
+				console.log('badges', t, card);
 				return [
 					{
 		        icon: './images/trello-icon-999.svg',
@@ -12,78 +13,19 @@
 				];
 			},
 
-			'card-detail-badges': function(t, card) {
-				return [
-					{
-						title: 'Dependant cards',
-		        text: 'Card one',
-		        url: 'https://trello.com/c/po9zF5D9/1-aws-keys'
-					},
-					{
-						title: ' ',
-		        text: 'Card two',
-		        url: 'https://trello.com/c/po9zF5D9/1-aws-keys'
-					}
-				];
-			},
-
 			'card-buttons': function(t, card) {
 				return [
-				// Button with a nested popup callback
-				{
-					icon: './images/trello-icon-999.svg',
-					text: "Sample Popup",
-					callback: function(t, card) {
-						t.popup({
-							title: 'Options',
-							items: [
-								{
-									text: "Nested Popup",
-									callback: function(t) {
-										console.log("Option 1 chosen");
-										t.popup({
-											title: "Nested Options",
-											items: [
-												{text: "Link",url:"https://developers.trello.com/"},
-												{text: "Link",url:"https://developers.trello.com/"}]
-
-										});
-									}
-								},
-								{
-									text: "Board Bar",
-									callback: function(t) {
-										t.boardBar({
-											url: "bar-contents.html",
-											height:550
-										});
-										t.closePopup();
-									}
-								},
-								{
-									text: 'Popup Iframe',
-									callback: function(t) {
-										t.popup({
-											title: 'Popup Iframe',
-											//url: t.signUrl('./attachment-section.html')
-											url: './attachment-section.html'
-										});
-									}
-								}
-								// The following example needs you to read the secret before it will work, and has been commented out.
-								/*,
-								{
-									text: "Authorize with Trello",
-									callback: function(t) {
-										t.popup({
-											title: "Auth needed",
-											url: 'auth-popup.html'});	
-										}
-								}*/
-							]
-						});
+					{
+						icon: './images/trello-icon-999.svg',
+						text: "Sample Popup",
+						callback: function(t) {
+							t.popup({
+								title: 'Popup Iframe',
+								url: './attachment-section.html'
+							});
+						}
 					}
-				}];
+				];
 			}
 		});
 	</script>
