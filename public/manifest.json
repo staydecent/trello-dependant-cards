@@ -7,14 +7,10 @@
   },
   "author": "Adrian Unger",
   "capabilities": [
-    "board-buttons",
     "card-badges",
     "card-detail-badges",
     "card-buttons",
-    "attachment-thumbnail",
     "attachment-sections",
-    "format-url",
-    "show-settings",
     "callback"
   ],
   "connectors": {
