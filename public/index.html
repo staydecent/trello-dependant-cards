@@ -4,16 +4,20 @@
 	<script>
 		TrelloPowerUp.initialize({
 			'card-badges': function(t, card) {
-			  return {
-			    dynamic: function(){
-			      return {
-			        title: 'Detail Badge', // for detail badges only
-			        text: 'Dynamic ' + (Math.random() * 100).toFixed(0).toString(),
-			        icon: './images/trello-icon-999.svg',
-			        refresh: 10
-			      }
-			    }
-			  }
+				return [
+					{
+		        icon: './images/trello-icon-999.svg',
+		        text: '2 Dependant cards'
+					},
+					{
+		        title: 'Dependant Cards',
+		        text: 'Card one'
+					},
+					{
+		        title: 'Dependant Cards',
+		        text: 'Card two'
+					}
+				];
 			},
 
 			'card-buttons': function(t, card) {
