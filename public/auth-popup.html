@@ -1,0 +1,34 @@
+<html>
+<head>
+<!-- Trello Power-Up Library -->
+<script src="https://trello.com/power-ups/power-up.min.js"></script>
+<link rel="stylesheet" href="https://trello.com/power-ups/power-up.css"/>
+<script>
+var t = TrelloPowerUp.iframe();
+var myAuth = function() {
+  t.authorize(function(secret) {
+        return './auth-window.html?secret=' + secret;
+  })
+  .then(function(token){
+    return t.set('organization', 'private', 'token', token)
+    .catch(t.NotHandled, function(){
+      return t.set('board', 'private', 'token', token);
+    });
+  })
+  .then(function(result) {
+  	// This won't work until the secrets match
+  	console.log('got back:', result);
+  	t.closePopup();
+  }, function(error) {
+  	console.log("Promise rejected with ", error);
+  	t.closePopup();
+  })
+  .done();
+};
+</script>
+
+</head>
+<body>
+<button onclick="myAuth();">Authenticate</button>
+</body>
+</html>

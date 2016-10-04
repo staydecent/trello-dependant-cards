@@ -1,0 +1,44 @@
+<html>
+<head>
+<!-- Trello Power-Up Library -->
+<script src="https://trello.com/power-ups/power-up.min.js"></script>
+<link rel="stylesheet" href="https://trello.com/power-ups/power-up.css"/>
+<script>
+console.log("iframe initialized.");
+var t = TrelloPowerUp.iframe();
+var attachNew = function() {
+	return t.attach({ url: 'https://trello.com/' });
+	/*.then(function(success) {
+		console.log("Attach success",success);
+	},
+	function(error) {
+		console.log("Attach error",error);
+	});*/
+};
+
+var triggerBoardBar = function() {
+	t.boardBar({url:'bar-contents.html'});
+};
+
+document.addEventListener("DOMContentLoaded", function(event) {
+	t.sizeTo('#page');
+});
+
+t.render(function() {
+	console.log('Attachment-section is being rendered.');
+	t.card('attachments')
+	.then(function(results) {
+		console.log('Attachments:',results);
+	});
+});
+</script>
+
+</head>
+<body>
+	<div id="page">
+		<p>Do something within an iframe that is rendered to the user.</p>
+		<p>Such as: <button onclick="attachNew();">Attach the Trello site</button></p>
+		<p>Or you could: <button onclick="triggerBoardBar">Open a Board Bar</button></p>
+	</div>
+</body>
+</html>

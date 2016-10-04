@@ -1,0 +1,51 @@
+<html>
+<head>
+<!-- Trello Power-Up Library -->
+<script src="https://trello.com/power-ups/power-up.min.js"></script>
+<link rel="stylesheet" href="https://trello.com/power-ups/power-up.css"/>
+<script>
+var t = TrelloPowerUp.iframe();
+
+var set = function() {
+	scope = 'organization';
+	visibility = document.getElementById('dataVisibility').value;
+	key = document.getElementById('dataKey').value;
+	value = document.getElementById('dataValue').value;
+	t.set(scope, visibility, key, value);
+
+	results = document.getElementById('results');
+	results.innerHTML = "Set the value of '" + key + "' to '" + value + "'.";
+};
+
+var get = function() {
+	scope = 'organization';
+	visibility = document.getElementById('dataVisibility').value;
+	key = document.getElementById('dataKey').value;
+	var valuePromise = t.get(scope, visibility, key);
+	valuePromise.then(function(result) {
+		results.innerHTML = "The value of '" + key + "' is '" + result + "'.";
+	});
+	
+};
+</script>
+
+<style>
+</style>
+</head>
+<body>
+<p>In this sample, we can interact with team-level data that your Power-Up has access to.</p>
+<select id="dataVisibility">
+	<option>shared</option>
+	<option>private</option>
+</select><br/>
+<input id="dataKey" placeholder="key"><br/>
+<input id="dataValue" placeholder="value"><br/>
+<button onclick="get();">Get</button><button onclick="set();">Set</button>
+<p id="results"></p>
+<br/><br/>
+<a href="#" onclick="t.hide();">Close</a>
+
+
+
+</body>
+</html>

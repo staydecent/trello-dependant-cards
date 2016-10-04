@@ -1,0 +1,30 @@
+{
+  "name": "Trello Dependant",
+  "description": "This is a Sample Power-Up demonstrating various capabilities",
+  "details":"Details about the power-up.",
+  "icon": {
+    "url": "./images/trello-icon.png"
+  },
+  "author": "Adrian Unger",
+  "capabilities": [
+    "board-buttons",
+    "card-badges",
+    "card-detail-badges",
+    "card-buttons",
+    "attachment-thumbnail",
+    "attachment-sections",
+    "format-url",
+    "show-settings",
+    "callback"
+  ],
+  "connectors": {
+    "iframe": {
+      "url": "./"
+    }
+  },
+  "recommend": {
+    "urls": [
+      "https://trello.com"
+    ]
+  }
+}

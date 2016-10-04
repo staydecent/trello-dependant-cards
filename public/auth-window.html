@@ -1,0 +1,60 @@
+<html>
+<head>
+<!-- Trello Power-Up Library -->
+<script src="https://trello.com/power-ups/power-up.min.js"></script>
+<link rel="stylesheet" href="https://trello.com/power-ups/power-up.css"/>
+
+
+<!-- Trello API Library + Dependency -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://trello.com/1/client.js?key=352206beeb5228a44a7663d5304cb675"></script>
+
+
+<script>
+var authenticationSuccess = function() { 
+	console.log("Successful authentication. Token is:" + Trello.token()); 
+
+	IO = new TrelloPowerUp.PostMessageIO({
+		local: window,
+		remote: window.opener,
+		targetOrigin:'https://samplepowerup.fluin.io/',
+		// You will need to replace this secret with the query string parameter you received.
+		secret: 'TjfdL5h7hsqgIPad'
+	});
+	IO.request('value', JSON.stringify(Trello.token()))
+	.timeout(1000)
+	.then(function(){
+			window.close();
+	});
+};
+var authenticationFailure = function() { 
+	console.log("Failed authentication"); 
+};
+
+
+var authorize = function() {
+	Trello.authorize({
+	  type: "popup",
+	  name: "Getting Started Application",
+	  scope: {
+	    read: true,
+	    write: true },
+	  expiration: "never",
+	  success: authenticationSuccess,
+	  error: authenticationFailure
+	});
+};
+      
+</script>
+
+<style>
+body {background-color:white;}
+</style>
+</head>
+<body>
+<!-- Automatically trigger auth-->
+<button onclick="authorize()">Click to connect to Trello</button>
+
+
+</body>
+</html>
