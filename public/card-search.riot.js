@@ -38,7 +38,7 @@
     this.position = 0
     this.showSuggestions = false
 
-    console.log('Promise', Promise.all)
+    console.log('Promise', Promise.all, t.card('attachments'))
 
     // Load data we need
     Promise.all({
