@@ -72,10 +72,9 @@
     }
 
     choose(e) {
-      t.attach({ url: e.item.card.url }).then(function () {
-        this.input = ''
-        this.showSuggestions = false
-      }.bind(this))
+      t.attach({ url: e.item.card.url })
+      this.input = ''
+      this.showSuggestions = false
     }
 
     function notCurrentNotAttached(item) {
