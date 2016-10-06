@@ -8,8 +8,8 @@
   <input type="text" placeholder="Search.." onkeyup={ edit } onfocus={ show } />
 
   <ul class={ visible: showSuggestions }>
-    <li each={ item, i in suggestions }>
-      <a onclick={ parent.choose } class="big-link">{ item.name }</a>
+    <li each={ card, i in suggestions }>
+      <a onclick={ parent.choose } class="big-link">{ card.name }</a>
     </li>
   </ul>
 
@@ -72,9 +72,8 @@
     }
 
     choose(e) {
-      var item = e.item
-      console.log('choose event', e)
-      // t.attach({ url: item.url })
+      console.log('choose event', e.item.card.url)
+      t.attach({ url: e.item.card.url })
     }
 
     function notCurrentNotAttached(item) {
