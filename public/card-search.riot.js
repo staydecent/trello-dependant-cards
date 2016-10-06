@@ -55,7 +55,7 @@
 
       this.showSuggestions = this.suggestions.length 
         && this.input 
-        && this.input.length >= this.threshold
+        && this.input.length >= THRESHOLD
 
       console.log('edit', this.input, this.suggestions, this.showSuggestions)
 
