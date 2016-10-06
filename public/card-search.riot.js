@@ -40,12 +40,12 @@
 
     // Load data we need
     t.cards('id', 'name', 'url').then(function cardResults (results) {
-      console.log('got cards', results)
       cards = results
+      console.log('got cards', cards)
       return t.card('attachments')
-    }).then(function attachmentsResults (results) {
-      console.log('got attachments', results)
-      attachments = results
+    }).then(function attachmentsResults (result) {
+      attachments = result.attachments
+      console.log('got attachments', attachments)
       this.update({
         items: cards.filter(notCurrentNotAttached)
       })
