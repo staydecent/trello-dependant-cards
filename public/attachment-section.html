@@ -4,10 +4,6 @@
   <script src="https://cdn.jsdelivr.net/riot/2.6/riot+compiler.min.js"></script>
   <link rel="stylesheet" href="https://trello.com/power-ups/power-up.css"/>
   <script>
-    document.addEventListener('DOMContentLoaded', function(event) {
-      t.sizeTo('#page')
-    })
-
     function attachNew () {
       return t.attach({ url: 'https://trello.com/' })
     }
@@ -26,15 +22,19 @@
 
       var t = TrelloPowerUp.iframe()
 
-      console.log('hey', t)
+      // Kinda seems hackish, is there a better API to obtain this?
+      var currentCardId = t.args[0].context.card
+
+      console.log('currentCardId', currentCardId)
 
       // this.items = []
 
-      // t
-      //   .cards('id', 'name', 'url')
-      //   .then(function cardResults(results) {
-      //     this.items = results.filter(notTitle())
-      //   })
+      t
+        .cards('id', 'name', 'url')
+        .then(function cardResults(results) {
+          console.log('cardResults', results)
+          // this.items = results.filter(notTitle())
+        })
 
       this.items = [
         { title: 'Try out some experimental libraries' },
