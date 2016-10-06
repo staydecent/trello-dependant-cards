@@ -38,16 +38,14 @@
     this.position = 0
     this.showSuggestions = false
 
-    console.log('Promise', Promise.all, t.card('attachments'))
-
     // Load data we need
-    Promise.all({
-      cards: t.cards('id', 'name', 'url'),
-      attachments: t.card('attachments')
-    }).then(function allResults (results) {
-      cards = results.cards
-      attachments = results.attachments
-      console.log('attachments', results)
+    t.cards('id', 'name', 'url').then(function cardResults (results) {
+      console.log('got cards', results)
+      cards = results
+      return t.card('attachments')
+    }).then(function attachmentsResults (results) {
+      console.log('got attachments', results)
+      attachments = results
       this.update({
         items: cards.filter(notId(currentCardId))
       })
