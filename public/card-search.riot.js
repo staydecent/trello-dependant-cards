@@ -67,7 +67,7 @@
           break
         case KEY.DOWN:
           var max = this.suggestions.length - 1
-          if (this.position < max || this.position === DEFAULT_POS) {
+          if (this.position < max || this.position === 0) {
             this.position++
           }
           break
