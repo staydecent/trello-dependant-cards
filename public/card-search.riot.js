@@ -21,7 +21,7 @@
     
     // will be hoisted
     var cards 
-    var attachments
+    var dependants
     
     // Kinda seems hackish, is there a better API to obtain this?
     var currentCardId = t.args[0].context.card
@@ -36,10 +36,12 @@
       cards = results
       return t.get('card', 'shared', 'dependants')
     }).then(function storageResults (results) {
-      if (toType(results) !== 'array') {
+      if (!results) {
+        results = []
+      } else if (toType(results) !== 'array') {
         results = [results]
       }
-      attachments = results
+      dependants = results
       this.update({
         items: cards.filter(notCurrentNotAttached)
       })
@@ -77,7 +79,8 @@
     choose(e) {
       var chosenCard = e.item.card
       t.attach({ url: chosenCard.url })
-      t.set('card', 'shared', 'dependants', chosenCard.url)
+      dependants.push(chosenCard.url)
+      t.set('card', 'shared', 'dependants', dependants)
       this.input = this.inputElm.value = ''
       this.showSuggestions = false
     }
@@ -86,7 +89,7 @@
       if (item.id === currentCardId) {
         return false
       } 
-      if (attachments.indexOf(item.url) !== -1) {
+      if (dependants.indexOf(item.url) !== -1) {
         return false
       }
       return true
