@@ -28,14 +28,16 @@
 			},
 
 			'attachment-sections': function(t, options) {
-				console.log('attachment-sections', options, t)
-				return t.get('card', 'shared', 'dependants').then(function (result) {
-					console.log('PROMISE', result)
+				return t.get('card', 'shared', 'dependants').then(function (dependants) {
+					var ours = options.entries.filter(function (item) {
+						return (dependants.indexOf(item.url) !== -1)
+					})
+					console.log('OURS', ours)
 					return [
 				    {
 							icon: './images/trello-icon-999.svg',
 				      title: "Dependant Cards",
-				      claimed: [],
+				      claimed: ours,
 				      content: {
 				        type: 'iframe',
 				        url: t.signUrl('./attachment-section.html')
