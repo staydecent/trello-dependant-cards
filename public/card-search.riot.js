@@ -3,7 +3,7 @@
     ::scope { padding: 3px; }
     ul { display: none; margin: 0; padding: 0; }
     ul.visible { display: block; }
-    li { padding: 1rem; }
+    li { padding: .25rem 1rem; }
     li.active { background-color: #FCF6E5; }
   </style>
 
@@ -47,7 +47,7 @@
       console.log('got attachments', results)
       attachments = results
       this.update({
-        items: cards.filter(notId(currentCardId))
+        items: cards.filter(notCurrentNotAttached)
       })
     }.bind(this))
 
@@ -85,9 +85,20 @@
       t.attach({ url: item.url })
     }
 
-    function notId (id) {
+    function notCurrentNotAttached(item) {
+      if (item.id === currentCardId) {
+        return false
+      } 
+      var urls = attachments.map(pluck('url'))
+      if (urls.indexOf(item.url) !== -1) {
+        return false
+      }
+      return true
+    }
+
+    function pluck (key) {
       return function (item) {
-        return item.id !== id
+        return item[key]
       }
     }
   </script>
