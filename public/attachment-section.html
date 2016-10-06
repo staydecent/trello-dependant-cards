@@ -7,7 +7,7 @@
 
     console.log("iframe initialize");
 
-    t.cards().then(function(results) {
+    t.cards('id', 'name', 'url').then(function(results) {
       console.log('t.cards()', results);
     });
 
