@@ -1,8 +1,14 @@
 <card-search>
+  <style scoped>
+    ul { display: none; margin: 0; padding: 0; }
+    ul.visible { display: block; }
+    li { padding: 1rem; }
+    li.active { background-color: #FCF6E5; }
+  </style>
 
   <input placeholder="Search.." onkeyup={ edit } onblur={ hide } />
 
-  <ul>
+  <ul class={ visible: showSuggestions }>
     <li each={ suggestions } onclick={ parent.choose }>{ name }</li>
   </ul>
 
@@ -47,9 +53,11 @@
         return item.name.indexOf(this.input) !== -1
       }.bind(this))
 
-      console.log('edit', this.suggestions)
+      this.showSuggestions = this.suggestions.length 
+        && this.input 
+        && this.input.length >= this.threshold
 
-      var max = this.suggestions.length - 1
+      console.log('edit', this.input, this.suggestions, this.showSuggestions)
 
       switch (e.keyCode) {
         case KEY.UP:
@@ -58,6 +66,7 @@
           }
           break
         case KEY.DOWN:
+          var max = this.suggestions.length - 1
           if (this.position < max || this.position === DEFAULT_POS) {
             this.position++
           }
