@@ -5,11 +5,11 @@
     ul.visible { display: block; }
   </style>
 
-  <input type="text" placeholder="Search.." onkeyup={ edit } onblur={ hide } onfocus={ show } />
+  <input type="text" placeholder="Search.." onkeyup={ edit } onfocus={ show } />
 
   <ul class={ visible: showSuggestions }>
     <li each={ item, i in suggestions }>
-      <a href="#" onclick={ parent.choose } class="big-link">{ item.name }</a>
+      <a onclick={ parent.choose } class="big-link">{ item.name }</a>
     </li>
   </ul>
 
