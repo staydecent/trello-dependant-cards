@@ -21,6 +21,7 @@
       </div>
 
       var t = TrelloPowerUp.iframe()
+      var scope = this
       var cards // will be hoisted
 
       // Kinda seems hackish, is there a better API to obtain this?
@@ -28,14 +29,14 @@
 
       console.log('currentCardId', currentCardId)
 
-      this.items = []
+      scope.items = []
 
       t
         .cards('id', 'name', 'url')
         .then(function cardResults(results) {
           cards = results
-          this.items = results.filter(notId(currentCardId))
-          console.log('this.items', this.items)
+          scope.items = results.filter(notId(currentCardId))
+          console.log('scope.items', scope.items)
         })
 
       function notId (id) {
