@@ -35,8 +35,9 @@
         .cards('id', 'name', 'url')
         .then(function cardResults(results) {
           cards = results
-          scope.items = results.filter(notId(currentCardId))
-          console.log('scope.items', scope.items)
+          scope.update({
+            items: results.filter(notId(currentCardId))
+          })
         })
 
       function notId (id) {
