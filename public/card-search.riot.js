@@ -59,7 +59,7 @@
       }
 
       this.suggestions = this.items.filter(function(item) {
-        return item.name.indexOf(this.input) !== -1
+        return item.name.toLowerCase().indexOf(this.input.toLowerCase()) !== -1
       }.bind(this))
 
       this.showSuggestions = this.suggestions.length 
@@ -93,7 +93,7 @@
     }
 
     choose(e) {
-      var item = event.item
+      var item = e.item
       console.log('choose', item)
     }
 
