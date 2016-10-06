@@ -84,10 +84,10 @@
       if (item.id === currentCardId) {
         return false
       } 
-      var urls = attachments.map(pluck('url'))
-      if (urls.indexOf(item.url) !== -1) {
-        return false
-      }
+      // var urls = attachments.map(pluck('url'))
+      // if (urls.indexOf(item.url) !== -1) {
+      //   return false
+      // }
       return true
     }
 
