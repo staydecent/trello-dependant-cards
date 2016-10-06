@@ -6,7 +6,7 @@
     li.active { background-color: #FCF6E5; }
   </style>
 
-  <input placeholder="Search.." onkeyup={ edit } onblur={ hide } />
+  <input placeholder="Search.." onkeyup={ edit } onblur={ hide } onfocus={ show } />
 
   <ul class={ visible: showSuggestions }>
     <li 
@@ -62,9 +62,7 @@
         return item.name.toLowerCase().indexOf(this.input.toLowerCase()) !== -1
       }.bind(this))
 
-      this.showSuggestions = this.suggestions.length 
-        && this.input 
-        && this.input.length >= THRESHOLD
+      this.show()
 
       switch (e.which) {
         case KEY.UP:
@@ -92,9 +90,16 @@
       this.showSuggestions = false
     }
 
+    show() {
+      this.showSuggestions = this.suggestions.length 
+        && this.input 
+        && this.input.length >= THRESHOLD
+    }
+
     choose(e) {
       var item = e.item
       console.log('choose', item)
+      t.attach({ url: item.url })
     }
 
     function notId (id) {
