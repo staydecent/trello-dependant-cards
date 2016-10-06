@@ -57,9 +57,7 @@
         && this.input 
         && this.input.length >= THRESHOLD
 
-      console.log('edit', this.input, this.suggestions, this.showSuggestions)
-
-      switch (e.keyCode) {
+      switch (e.which) {
         case KEY.UP:
           if (this.position > 0) {
             this.position--
