@@ -5,7 +5,7 @@
   <script>
     var t = TrelloPowerUp.iframe();
 
-    console.log("iframe initialize", t);
+    console.log("iframe initialize", t.cards());
 
     var attachNew = function() {
       return t.attach({ url: 'https://trello.com/' });
