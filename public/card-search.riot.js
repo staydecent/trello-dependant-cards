@@ -72,8 +72,10 @@
     }
 
     choose(e) {
-      console.log('choose event', e.item.card.url)
-      t.attach({ url: e.item.card.url })
+      t.attach({ url: e.item.card.url }).then(function () {
+        this.input = ''
+        this.showSuggestions = false
+      }.bind(this))
     }
 
     function notCurrentNotAttached(item) {
