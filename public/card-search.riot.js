@@ -5,7 +5,7 @@
     ul.visible { display: block; }
   </style>
 
-  <input type="text" placeholder="Search.." onkeyup={ edit } onfocus={ show } />
+  <input type="text" name="inputElm" placeholder="Search.." onkeyup={ edit } onfocus={ show } />
 
   <ul class={ visible: showSuggestions }>
     <li each={ card, i in suggestions }>
@@ -73,7 +73,7 @@
 
     choose(e) {
       t.attach({ url: e.item.card.url })
-      this.input = ''
+      this.input = this.inputElm.value = ''
       this.showSuggestions = false
     }
 
