@@ -34,9 +34,10 @@
     // Load data we need
     t.cards('id', 'name', 'url').then(function cardResults (results) {
       cards = results
-      return t.card('attachments')
-    }).then(function attachmentsResults (result) {
-      attachments = result.attachments
+      return t.get('card', 'shared', 'dependants')
+    }).then(function storageResults (results) {
+      console.log('storageResults', results)
+      attachments = results
       this.update({
         items: cards.filter(notCurrentNotAttached)
       })
