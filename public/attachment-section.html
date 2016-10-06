@@ -4,25 +4,13 @@
   <script src="https://cdn.jsdelivr.net/riot/2.6/riot+compiler.min.js"></script>
   <link rel="stylesheet" href="https://trello.com/power-ups/power-up.css"/>
   <script>
-    (function (t) {
-      console.log('iframe initialize')
+    document.addEventListener('DOMContentLoaded', function(event) {
+      t.sizeTo('#page')
+    })
 
-      document.addEventListener('DOMContentLoaded', function(event) {
-        t.sizeTo('#page')
-      })
-
-      t.render(function() {
-        console.log('Attachment-section is being rendered.')
-        t.card('attachments')
-          .then(function(results) {
-            console.log('Attachments:', results)
-          })
-      })
-
-      function attachNew () {
-        return t.attach({ url: 'https://trello.com/' })
-      }
-    }(TrelloPowerUp.iframe()))
+    function attachNew () {
+      return t.attach({ url: 'https://trello.com/' })
+    }
   </script>
 </head>
 <body>
@@ -35,12 +23,30 @@
       <div each={ items }>
         <h3>{ title }</h3>
       </div>
-      
+
+      var t = TrelloPowerUp.iframe()
+
+      console.log('hey', t)
+
+      // this.items = []
+
+      // t
+      //   .cards('id', 'name', 'url')
+      //   .then(function cardResults(results) {
+      //     this.items = results.filter(notTitle())
+      //   })
+
       this.items = [
         { title: 'Try out some experimental libraries' },
         { title: 'Do we really need vDom?' },
         { title: 'Pick of some local raspber ries' }
       ]
+
+      function notTitle (title) {
+        return function (item) {
+          return item.title !== title
+        }
+      }
     </card-search>
   </script>
 
