@@ -10,8 +10,7 @@
 
   <ul class={ visible: showSuggestions }>
     <li 
-      each={ item, index in suggestions } 
-      class={ acive: index === parent.position } 
+      each={ item, i in suggestions } 
       onclick={ parent.choose }>
       
       { item.name }
