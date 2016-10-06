@@ -29,9 +29,7 @@
 
 			'attachment-sections': function(t, options) {
 				console.log('attachment-sections', options, t)
-				var currentCardId = options.context.card
-
-				return t.get('card', 'shared', currentCardId).then(function (result) {
+				return t.get('card', 'shared', 'dependants').then(function (result) {
 					console.log('PROMISE', result)
 					return [
 				    {
