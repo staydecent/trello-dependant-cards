@@ -17,10 +17,11 @@
   <script type="riot/tag">
     <card-search>
       <div each={ items }>
-        <h3>{ title }</h3>
+        <h3>{ name }</h3>
       </div>
 
       var t = TrelloPowerUp.iframe()
+      var cards // will be hoisted
 
       // Kinda seems hackish, is there a better API to obtain this?
       var currentCardId = t.args[0].context.card
@@ -32,8 +33,8 @@
       t
         .cards('id', 'name', 'url')
         .then(function cardResults(results) {
-          console.log('cardResults', results)
-          // this.items = results.filter(notTitle())
+          cards = results
+          this.items = results.filter(notId(currentCardId))
         })
 
       this.items = [
@@ -42,10 +43,20 @@
         { title: 'Pick of some local raspber ries' }
       ]
 
-      function notTitle (title) {
+      function notId (id) {
         return function (item) {
-          return item.title !== title
+          return item.id !== id
         }
+      }
+
+      function pluck (key) {
+        return function (item) {
+          return item[key]
+        }
+      }
+
+      function truthy (item) {
+        return item
       }
     </card-search>
   </script>
