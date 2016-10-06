@@ -2,7 +2,6 @@
 <head>
 	<script src="https://trello.com/power-ups/power-up.min.js"></script>
 	<script>
-		console.log('TrelloPowerUp', TrelloPowerUp)
 		TrelloPowerUp.initialize({
 			'card-badges': function(t, card) {
 				return [
@@ -31,6 +30,7 @@
 			'attachment-sections': function(t, options) {
 				console.log('attachment-sections', options, t)
 				return t.card('attachments').then(function (result) {
+					console.log('Promise', result)
 					return [
 				    {
 							icon: './images/trello-icon-999.svg',
