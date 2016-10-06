@@ -36,7 +36,9 @@
       cards = results
       return t.get('card', 'shared', 'dependants')
     }).then(function storageResults (results) {
-      console.log('storageResults', results)
+      if (toType(results) !== 'array') {
+        results = [results]
+      }
       attachments = results
       this.update({
         items: cards.filter(notCurrentNotAttached)
@@ -84,10 +86,9 @@
       if (item.id === currentCardId) {
         return false
       } 
-      // var urls = attachments.map(pluck('url'))
-      // if (urls.indexOf(item.url) !== -1) {
-      //   return false
-      // }
+      if (attachments.indexOf(item.url) !== -1) {
+        return false
+      }
       return true
     }
 
@@ -95,6 +96,11 @@
       return function (item) {
         return item[key]
       }
+    }
+
+    function toType (val) {
+      var str = ({}).toString.call(val)
+      return str.toLowerCase().slice(8, -1)
     }
   </script>
 
