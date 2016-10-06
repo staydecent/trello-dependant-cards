@@ -28,20 +28,15 @@
 
       console.log('currentCardId', currentCardId)
 
-      // this.items = []
+      this.items = []
 
       t
         .cards('id', 'name', 'url')
         .then(function cardResults(results) {
           cards = results
           this.items = results.filter(notId(currentCardId))
+          console.log('this.items', this.items)
         })
-
-      this.items = [
-        { title: 'Try out some experimental libraries' },
-        { title: 'Do we really need vDom?' },
-        { title: 'Pick of some local raspber ries' }
-      ]
 
       function notId (id) {
         return function (item) {
