@@ -73,8 +73,8 @@
 
     choose(e) {
       var item = e.item
-      console.log('choose', item)
-      t.attach({ url: item.url })
+      console.log('choose event', e)
+      // t.attach({ url: item.url })
     }
 
     function notCurrentNotAttached(item) {
