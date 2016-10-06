@@ -20,11 +20,26 @@
 						callback: function(t) {
 							t.popup({
 								title: 'Dependant Cards',
-								url: './attachment-section.html'
+								url: './button-popup.html'
 							});
 						}
 					}
 				];
+			}
+
+			'attachment-sections': function(t, options) {
+				console.log('attachment-sections', options)
+			  return [
+			    {
+						icon: './images/trello-icon-999.svg',
+			      title: "Dependant Cards",
+			      claimed: [],
+			      content: {
+			        type: 'iframe',
+			        url: t.signUrl('./attachment-section.html')
+			      }
+			    }
+			  ];
 			}
 		});
 	</script>
