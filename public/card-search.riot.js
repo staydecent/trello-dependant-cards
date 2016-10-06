@@ -9,7 +9,7 @@
 
   <ul class={ visible: showSuggestions }>
     <li each={ item, i in suggestions }>
-      <a onclick={ parent.choose } class="big-link">{ item.name }</a>
+      <a href="#" onclick={ parent.choose } class="big-link">{ item.name }</a>
     </li>
   </ul>
 
@@ -73,6 +73,7 @@
 
     choose(e) {
       var item = e.item
+      console.log('choose', item)
       t.attach({ url: item.url })
     }
 
