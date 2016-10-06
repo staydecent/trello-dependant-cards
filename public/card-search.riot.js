@@ -38,7 +38,7 @@
     this.position = 0
     this.showSuggestions = false
 
-    console.log('Promise', Promise)
+    console.log('Promise', Promise.all)
 
     // Load data we need
     Promise.all({
