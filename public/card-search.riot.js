@@ -79,7 +79,7 @@
           }
           break
         case KEY.ENTER:
-          choose({ item: this.suggestions[this.position] })
+          this.choose({ item: this.suggestions[this.position] })
           break
         case KEY.ESC:
           this.showSuggestions = false
