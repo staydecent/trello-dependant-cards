@@ -1,5 +1,6 @@
 <card-search>
   <style scoped>
+    ::scope { padding: 3px; }
     ul { display: none; margin: 0; padding: 0; }
     ul.visible { display: block; }
     li { padding: 1rem; }
@@ -21,13 +22,7 @@
 
   <script>
     var THRESHOLD = 3
-    var KEY = {
-      UP: 38,
-      DOWN: 40,
-      ENTER: 13,
-      TAB: 9,
-      ESC: 27
-    }
+    var ESC_KEY = 27
 
     var t = TrelloPowerUp.iframe()
     var cards // will be hoisted
@@ -39,6 +34,8 @@
     this.suggestions = []
     this.position = 0
     this.showSuggestions = false
+
+    console.log('Promise', Promise)
 
     t
       .cards('id', 'name', 'url')
@@ -62,28 +59,11 @@
         return item.name.toLowerCase().indexOf(this.input.toLowerCase()) !== -1
       }.bind(this))
 
-      this.show()
-
-      switch (e.which) {
-        case KEY.UP:
-          if (this.position > 0) {
-            this.position--
-          }
-          break
-        case KEY.DOWN:
-          var max = this.suggestions.length - 1
-          if (this.position < max || this.position === 0) {
-            this.position++
-          }
-          break
-        case KEY.ENTER:
-          this.choose({ item: this.suggestions[this.position] })
-          break
-        case KEY.ESC:
-          this.showSuggestions = false
+      if (e.which === ESC_KEY) {
+        this.hide()
+      } else {
+        this.show()
       }
-
-      console.log('which', e.which, this.position)
     }
 
     hide(e) {
@@ -98,7 +78,6 @@
 
     choose(e) {
       var item = e.item
-      console.log('choose', item)
       t.attach({ url: item.url })
     }
 
