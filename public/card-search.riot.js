@@ -25,7 +25,10 @@
     var ESC_KEY = 27
 
     var t = TrelloPowerUp.iframe()
-    var cards // will be hoisted
+    
+    // will be hoisted
+    var cards 
+    var attachments
     
     // Kinda seems hackish, is there a better API to obtain this?
     var currentCardId = t.args[0].context.card
@@ -37,15 +40,18 @@
 
     console.log('Promise', Promise)
 
-    t
-      .cards('id', 'name', 'url')
-      .then(function cardResults (results) {
-        cards = results
-        this.update({
-          items: results.filter(notId(currentCardId))
-        })
-      }.bind(this))
-
+    // Load data we need
+    Promise.all({
+      cards: t.cards('id', 'name', 'url'),
+      attachments: t.card('attachments')
+    }).then(function allResults (results) {
+      cards = results.cards
+      attachments = results.attachments
+      console.log('attachments', results)
+      this.update({
+        items: cards.filter(notId(currentCardId))
+      })
+    }.bind(this))
 
     edit(e) {
       this.input = e.target.value
