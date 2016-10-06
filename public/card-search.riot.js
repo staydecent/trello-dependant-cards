@@ -72,7 +72,9 @@
     }
 
     choose(e) {
-      t.attach({ url: e.item.card.url })
+      var chosenCard = e.item.card
+      t.attach({ url: chosenCard.url })
+      t.set('card', 'shared', { chosenCard.id: chosenCard.url })
       this.input = this.inputElm.value = ''
       this.showSuggestions = false
     }

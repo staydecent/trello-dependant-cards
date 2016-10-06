@@ -29,8 +29,10 @@
 
 			'attachment-sections': function(t, options) {
 				console.log('attachment-sections', options, t)
-				return t.card('attachments').then(function (result) {
-					console.log('Promise', result)
+				var currentCardId = options.context.card
+
+				return t.get('card', 'shared', currentCardId).then(function (result) {
+					console.log('PROMISE', result)
 					return [
 				    {
 							icon: './images/trello-icon-999.svg',
