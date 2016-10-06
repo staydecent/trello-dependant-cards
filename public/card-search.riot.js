@@ -9,7 +9,14 @@
   <input placeholder="Search.." onkeyup={ edit } onblur={ hide } />
 
   <ul class={ visible: showSuggestions }>
-    <li each={ suggestions } onclick={ parent.choose }>{ name }</li>
+    <li 
+      each={ item, index in suggestions } 
+      class={ acive: index === parent.position } 
+      onclick={ parent.choose }>
+      
+      { item.name }
+    
+    </li>
   </ul>
 
   <script>
@@ -45,7 +52,9 @@
 
     edit(e) {
       this.input = e.target.value
+
       if (!this.input || this.input.length < THRESHOLD) {
+        this.showSuggestions = false
         return
       }
 
@@ -75,6 +84,8 @@
         case KEY.ESC:
           this.showSuggestions = false
       }
+
+      console.log('which', e.which, this.position)
     }
 
     hide(e) {
