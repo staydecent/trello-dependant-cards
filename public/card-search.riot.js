@@ -47,7 +47,7 @@
         return item.name.indexOf(this.input) !== -1
       }.bind(this))
 
-      console.log('edit', suggestions)
+      console.log('edit', this.suggestions)
 
       var max = this.suggestions.length - 1
 
