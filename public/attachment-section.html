@@ -1,36 +1,52 @@
 <html>
 <head>
   <script src="https://trello.com/power-ups/power-up.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/riot/2.6/riot+compiler.min.js"></script>
   <link rel="stylesheet" href="https://trello.com/power-ups/power-up.css"/>
   <script>
-    var t = TrelloPowerUp.iframe();
+    (function (t) {
+      console.log('iframe initialize')
 
-    console.log("iframe initialize");
+      document.addEventListener('DOMContentLoaded', function(event) {
+        t.sizeTo('#page')
+      })
 
-    t.cards('id', 'name', 'url').then(function(results) {
-      console.log('t.cards()', results);
-    });
+      t.render(function() {
+        console.log('Attachment-section is being rendered.')
+        t.card('attachments')
+          .then(function(results) {
+            console.log('Attachments:', results)
+          })
+      })
 
-    var attachNew = function() {
-      return t.attach({ url: 'https://trello.com/' });
-    };
-
-    document.addEventListener("DOMContentLoaded", function(event) {
-      t.sizeTo('#page');
-    });
-
-    t.render(function() {
-      console.log('Attachment-section is being rendered.');
-      t.card('attachments')
-        .then(function(results) {
-          console.log('Attachments:', results);
-        });
-    });
+      function attachNew () {
+        return t.attach({ url: 'https://trello.com/' })
+      }
+    }(TrelloPowerUp.iframe()))
   </script>
 </head>
 <body>
   <div id="page">
-    <p>Such as: <button onclick="attachNew();">Attach the Trello site</button></p>
+    <card-search></card-search>
   </div>
+
+  <script type="riot/tag">
+    <card-search>
+      <div each={ items }>
+        <h3>{ title }</h3>
+      </div>
+      
+      this.items = [
+        { title: 'Try out some experimental libraries' },
+        { title: 'Do we really need vDom?' },
+        { title: 'Pick of some local raspber ries' }
+      ]
+    </card-search>
+  </script>
+
+  <script>
+    riot.mount('*')
+  </script>
+
 </body>
 </html>
