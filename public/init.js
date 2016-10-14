@@ -2,10 +2,13 @@ TrelloPowerUp.initialize({
   'card-badges': function (t, card) {
     return t.get('card', 'shared', 'dependants').then(function (dependants) {
       console.log('card-badges', card, dependants)
+      if (!dependants || !dependants.length) {
+        return []
+      }
       return [
         {
           icon: './images/trello-icon-999.svg',
-          text: '2 Dependant cards'
+          text: dependants.length + ' Dependant cards'
         }
       ]
     })
