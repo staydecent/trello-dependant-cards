@@ -1,54 +1,7 @@
 <html>
 <head>
 	<script src="https://trello.com/power-ups/power-up.min.js"></script>
-	<script>
-		TrelloPowerUp.initialize({
-			'card-badges': function(t, card) {
-				console.log('card-badges', t, card);
-				return [
-					{
-		        icon: './images/trello-icon-999.svg',
-		        text: '2 Dependant cards'
-					}
-				];
-			},
-
-			'card-buttons': function(t, card) {
-				return [
-					{
-						icon: './images/trello-icon-999.svg',
-						text: "Dependant Cards",
-						callback: function(t) {
-							t.popup({
-								title: 'Dependant Cards',
-								url: './button-popup.html'
-							});
-						}
-					}
-				];
-			},
-
-			'attachment-sections': function(t, options) {
-				return t.get('card', 'shared', 'dependants').then(function (dependants) {
-					var ours = options.entries.filter(function (item) {
-						return (dependants.indexOf(item.url) !== -1)
-					})
-					console.log('OURS', ours)
-					return [
-				    {
-							icon: './images/trello-icon-999.svg',
-				      title: "Dependant Cards",
-				      claimed: ours,
-				      content: {
-				        type: 'iframe',
-				        url: t.signUrl('./attachment-section.html')
-				      }
-				    }
-				  ];
-				})
-			}
-		});
-	</script>
+  <script src="./init.js"></script>
 </head>
 <body>
 </body>
