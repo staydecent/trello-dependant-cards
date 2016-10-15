@@ -7,19 +7,30 @@
   <script>
     var t = TrelloPowerUp.iframe()
 
-    console.log('loaded dependant-cards tag')
-
-    document.addEventListener('DOMContentLoaded', function (event) {
-      t.sizeTo('#page')
-    })
+    // will be hoisted
+    var attachments
 
     this.items = []
 
     t.card('attachments').then(function(result) {
-      console.log('Attachments: ', result)
-      this.update({
-        items: result.attachments
+      attachments = result.attachments
+      return t.get('card', 'shared', 'dependants')
+    }).then(function storageResults (results) {
+      if (!results) {
+        results = []
+      } else if (toType(results) !== 'array') {
+        results = [results]
+      }
+
+      attachments = attachments.filter(function (item) {
+        return (dependants.indexOf(item.url) !== -1)
       })
-    }.bind(this))
+
+      console.log('Attachments: ', attachments)
+      
+      this.update({
+        items: attachments
+      })
+    })
   </script>
 </dependant-cards>
