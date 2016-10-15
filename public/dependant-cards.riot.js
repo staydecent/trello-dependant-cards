@@ -17,5 +17,9 @@
         items: result.attachments
       })
     }.bind(this))
+
+    t.get('card', 'shared', 'dependants').then(function (dependants) {
+      console.log('DEPS!', dependants)
+    })
   </script>
 </dependant-cards>
