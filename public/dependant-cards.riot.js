@@ -17,10 +17,10 @@
 
     this.items = []
 
-    t.card('attachments').then(function(results) {
-      console.log('Attachments: ', results)
+    t.card('attachments').then(function(result) {
+      console.log('Attachments: ', result)
       this.update({
-        items: results
+        items: result.attachments
       })
     }.bind(this))
   </script>
