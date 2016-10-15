@@ -17,14 +17,11 @@
 
     this.items = []
 
-    t.render(function () {
-      console.log('Attachment-section is being rendered.')
-      t.card('attachments').then(function(results) {
-        console.log('Attachments: ', results)
-        this.update({
-          items: results
-        })
-      }.bind(this))
-    })
+    t.card('attachments').then(function(results) {
+      console.log('Attachments: ', results)
+      this.update({
+        items: results
+      })
+    }.bind(this))
   </script>
 </dependant-cards>
