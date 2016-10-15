@@ -13,13 +13,20 @@
 
     t.card('attachments').then(function(result) {
       console.log('Attachments: ', result)
-      this.update({
-        items: result.attachments
-      })
-    }.bind(this))
+      var attachments = result.attachments
 
-    t.get('card', 'shared', 'dependants').then(function (dependants) {
-      console.log('DEPS!', dependants)
-    })
+      t.get('card', 'shared', 'dependants').then(function (dependants) {
+        var ours = attachments.filter(function (item) {
+          return (dependants.indexOf(item.url) !== -1)
+        })
+      
+        console.log('OUR DEPS!', ours)
+      
+        this.update({
+          items: ours
+        })
+      }.bind(this))
+      
+    }.bind(this))
   </script>
 </dependant-cards>
