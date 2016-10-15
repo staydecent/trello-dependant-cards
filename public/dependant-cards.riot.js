@@ -1,10 +1,8 @@
 <dependant-cards>
 
-  <ul>
-    <li each={ card in items } class="basic-attachment-list-item">
-      { card.name }
-    </li>
-  </ul>
+  <div each={ card in items } class="basic-attachment-list-item">
+    <a href={ card.url } class="attachment-thumbnail-details-title js-attachment-thumbnail-details">{ card.name }</a>
+  </div>
 
   <script>
     var t = TrelloPowerUp.iframe()
