@@ -9,6 +9,8 @@
   <script>
     var t = TrelloPowerUp.iframe()
 
+    console.log('loaded dependant-cards tag')
+
     document.addEventListener('DOMContentLoaded', function (event) {
       t.sizeTo('#page')
     })
