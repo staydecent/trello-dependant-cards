@@ -6,21 +6,14 @@
 </head>
 <body>
   <div id="page">
-    <trello-dependant></trello-dependant>
+    <p>Search for a card to add as a dependancy.</p>
+    <card-search />
   </div>
-
-  <script type="riot/tag">
-    <trello-dependant>
-      <p>Search for a card to add as a dependancy.</p>
-      <card-search />
-    </trello-dependant>
-  </script>
 
   <script src="./card-search.riot.js" type="riot/tag"></script>
 
   <script>
     riot.mount('*')
   </script>
-
 </body>
 </html>
