@@ -18,8 +18,10 @@
       .then(getDependants)
       .then(getCards)
       .then(function (cards) {
-        console.log('Loaded all of our data!', attachments, ours, cards)
-        // @TODO: Filter cards based on ours and fill out the names!
+        ours = ours.map(function (o) {
+          o.name = cards.filter(function (c) { return c.id === o.id })[0].name
+        })
+        console.log('Loaded all of our data!', ours)
         this.update({
           items: ours
         })
