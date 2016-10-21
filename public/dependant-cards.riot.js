@@ -19,6 +19,7 @@
       .then(getCards)
       .then(function (cards) {
         console.log('Loaded all of our data!', attachments, ours, cards)
+        // @TODO: Filter cards based on ours and fill out the names!
         this.update({
           items: ours
         })
