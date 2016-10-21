@@ -34,7 +34,6 @@ TrelloPowerUp.initialize({
       var ours = options.entries.filter(function (item) {
         return (dependants.indexOf(item.url) !== -1)
       })
-      console.log('OURS', ours)
       return [
         {
           icon: './images/trello-icon-999.svg',

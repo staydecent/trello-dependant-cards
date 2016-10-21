@@ -12,7 +12,6 @@
     this.items = []
 
     t.card('attachments').then(function(result) {
-      console.log('Attachments: ', result)
       var attachments = result.attachments
 
       t.get('card', 'shared', 'dependants').then(function (dependants) {
@@ -20,7 +19,7 @@
           return (dependants.indexOf(item.url) !== -1)
         })
       
-        console.log('OUR DEPS!', ours)
+        console.log('OUR DEPS!', ours, jQuery)
       
         this.update({
           items: ours
