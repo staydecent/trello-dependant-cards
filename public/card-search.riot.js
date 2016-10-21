@@ -79,6 +79,7 @@
     choose(e) {
       var chosenCard = e.item.card
       t.attach({ url: chosenCard.url })
+      console.log('chosenCard', chosenCard)
       dependants.push(chosenCard.url)
       t.set('card', 'shared', 'dependants', dependants)
       this.input = this.inputElm.value = ''
