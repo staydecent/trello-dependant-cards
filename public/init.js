@@ -32,7 +32,7 @@ TrelloPowerUp.initialize({
   'attachment-sections': function (t, options) {
     return t.get('card', 'shared', 'dependants').then(function (dependants) {
       var ours = options.entries.filter(function (item) {
-        return (dependants.indexOf(item.url) !== -1)
+        return R.findIndex(R.propEq('url', item.url))(dependants) !== -1
       })
       return [
         {
