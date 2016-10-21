@@ -18,8 +18,11 @@
       .then(getDependants)
       .then(getCards)
       .then(function (cards) {
+        console.log(
+          'get name?', 
+          ours.map(function (x) { return x.id }), 
+          cards.map(function (x) { return x.id }))
         ours = ours.map(function (o) {
-          console.log('get name?', cards.filter(function (c) { return c.id === o.id }))
           return o
         })
         console.log('Loaded all of our data!', ours)
