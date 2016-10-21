@@ -39,7 +39,7 @@
     }
 
     function getCards () {
-      return t.cards()
+      return t.cards('id', 'name', 'url')
     }
   </script>
 </dependant-cards>
