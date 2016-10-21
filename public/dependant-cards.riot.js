@@ -16,18 +16,7 @@
 
     getAttachments()
       .then(getDependants)
-      .then(getCards)
-      .then(function (cards) {
-        var cardIds = cards.map(function (x) { return x.id })
-        console.log(
-          'get name?', 
-          JSON.stringify(cardIds), 
-          JSON.stringify(ours))
-        // ours = ours.map(function (o) {
-        //   console.log('!!!', cardIds.indexOf(o.id))
-        //   return o
-        // })
-        // console.log('Loaded all of our data!', ours)
+      .then(function () {
         this.update({
           items: ours
         })

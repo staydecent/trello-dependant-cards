@@ -79,8 +79,7 @@
     choose(e) {
       var chosenCard = e.item.card
       t.attach({ url: chosenCard.url })
-      console.log('chosenCard', chosenCard)
-      dependants.push(chosenCard.url)
+      dependants.push(chosenCard)
       t.set('card', 'shared', 'dependants', dependants)
       this.input = this.inputElm.value = ''
       this.showSuggestions = false
@@ -90,16 +89,10 @@
       if (item.id === currentCardId) {
         return false
       } 
-      if (dependants.indexOf(item.url) !== -1) {
+      if (R.find(R.propEq('url', item.url))(dependants)) {
         return false
       }
       return true
-    }
-
-    function pluck (key) {
-      return function (item) {
-        return item[key]
-      }
     }
 
     function toType (val) {
