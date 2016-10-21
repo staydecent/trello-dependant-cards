@@ -11,21 +11,35 @@
 
     this.items = []
 
-    t.card('attachments').then(function(result) {
-      var attachments = result.attachments
+    var attachments
+    var ours
 
-      t.get('card', 'shared', 'dependants').then(function (dependants) {
-        var ours = attachments.filter(function (item) {
-          return (dependants.indexOf(item.url) !== -1)
-        })
-      
-        console.log('OUR DEPS!', ours, parent.document, jQuery('a.list-card-title', parent.document))
-      
+    getAttachments()
+      .then(getDependants)
+      .then(getCards)
+      .then(function (cards) {
+        console.log('Loaded all of our data!', attachments, ours, cards)
         this.update({
           items: ours
         })
       }.bind(this))
-      
-    }.bind(this))
+
+    function getAttachments () {
+      return t.card('attachments').then(function (result) {
+        return attachments = result.attachments
+      })
+    }
+
+    function getDependants () {
+      return t.get('card', 'shared', 'dependants').then(function (dependants) {
+        return ours = attachments.filter(function (item) {
+          return (dependants.indexOf(item.url) !== -1)
+        })
+      })
+    }
+
+    function getCards () {
+      return t.cards()
+    }
   </script>
 </dependant-cards>
