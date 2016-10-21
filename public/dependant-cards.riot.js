@@ -21,13 +21,13 @@
         var cardIds = cards.map(function (x) { return x.id })
         console.log(
           'get name?', 
-          ours.map(function (x) { return x.id }), 
-          cards.map(function (x) { return x.id }))
-        ours = ours.map(function (o) {
-          console.log('!!!', cardIds.indexOf(o.id))
-          return o
-        })
-        console.log('Loaded all of our data!', ours)
+          JSON.stringify(cardIds), 
+          JSON.stringify(ours))
+        // ours = ours.map(function (o) {
+        //   console.log('!!!', cardIds.indexOf(o.id))
+        //   return o
+        // })
+        // console.log('Loaded all of our data!', ours)
         this.update({
           items: ours
         })
