@@ -19,7 +19,7 @@
       .then(getCards)
       .then(function (cards) {
         ours = ours.map(function (o) {
-          o.name = cards.filter(function (c) { return c.id === o.id })[0].name
+          console.log('get name?', cards.filter(function (c) { return c.id === o.id }))
           return o
         })
         console.log('Loaded all of our data!', ours)
