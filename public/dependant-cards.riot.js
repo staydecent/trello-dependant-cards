@@ -19,7 +19,7 @@
           return (dependants.indexOf(item.url) !== -1)
         })
       
-        console.log('OUR DEPS!', ours, jQuery)
+        console.log('OUR DEPS!', ours, jQuery('a.list-card-title.js-card-name'))
       
         this.update({
           items: ours
