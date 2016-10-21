@@ -18,11 +18,13 @@
       .then(getDependants)
       .then(getCards)
       .then(function (cards) {
+        var cardIds = cards.map(function (x) { return x.id })
         console.log(
           'get name?', 
           ours.map(function (x) { return x.id }), 
           cards.map(function (x) { return x.id }))
         ours = ours.map(function (o) {
+          console.log('!!!', cardIds.indexOf(o.id))
           return o
         })
         console.log('Loaded all of our data!', ours)
