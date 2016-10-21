@@ -30,6 +30,7 @@
 
     function getDependants () {
       return t.get('card', 'shared', 'dependants').then(function (dependants) {
+        console.log('getDependants', attachments, dependants)
         return ours = attachments.filter(function (item) {
           return (dependants.indexOf(item.url) !== -1)
         })
