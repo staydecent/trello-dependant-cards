@@ -1,3 +1,5 @@
+/* global TrelloPowerUp */
+
 TrelloPowerUp.initialize({
   'card-badges': function (t, card) {
     return t.get('card', 'shared', 'dependants').then(function (dependants) {
@@ -27,24 +29,5 @@ TrelloPowerUp.initialize({
         }
       }
     ]
-  },
-
-  'attachment-sections': function (t, options) {
-    return t.get('card', 'shared', 'dependants').then(function (dependants) {
-      var ours = options.entries.filter(function (item) {
-        return R.findIndex(R.propEq('url', item.url))(dependants) !== -1
-      })
-      return [
-        {
-          icon: './images/trello-icon-999.svg',
-          title: 'Dependant Cards',
-          claimed: ours,
-          content: {
-            type: 'iframe',
-            url: t.signUrl('./attachment-section.html')
-          }
-        }
-      ]
-    })
   }
 })
