@@ -16,6 +16,17 @@ TrelloPowerUp.initialize({
     })
   },
 
+  'card-detail-badges': function (t, card) {
+    return t.get('card', 'shared', 'dependants').then(function (dependants) {
+      if (!dependants || !dependants.length) {
+        return []
+      }
+      return dependants.map(function (dep) {
+        return {title: 'Depends on', text: dep.name}
+      })
+    })
+  },
+
   'card-buttons': function (t, card) {
     return [
       {
