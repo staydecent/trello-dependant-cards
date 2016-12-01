@@ -1,0 +1,28 @@
+{
+  "name": "Trello Dependant Cards",
+  "version": "0.0.1",
+  "description": "Declare a card blocked by attaching another card that's blocking it.",
+  "icons": {
+    "128": "jasmine_favicon.png"
+  },
+  
+  "permissions": [
+    "https://trello.com/",
+    "storage"
+  ],
+
+  "content_scripts" : [
+    {
+      "matches" : [
+        "https://trello.com/b/*"
+      ],
+      "js" : [
+        "build/index.js"
+      ],
+      "run_at" : "document_idle",
+      "all_frames" : false
+    }
+  ],
+
+  "manifest_version": 2
+}

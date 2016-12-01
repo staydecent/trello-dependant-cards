@@ -4,14 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server",
     "test": "standard"
   },
   "author": "Adrian Unger",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.15.2",
-    "express": "^4.14.0"
   },
   "devDependencies": {
     "eslint-config-standard": "^6.2.1",
