@@ -21,9 +21,9 @@ TrelloPowerUp.initialize({
       if (!dependants || !dependants.length) {
         return []
       }
-      return dependants.map(function (dep) {
-        return {title: 'Depends on', text: dep.name}
-      })
+      return [{title: 'Depends on'}].concat(dependants.map(function (dep) {
+        return {text: dep.name}
+      }))
     })
   },
 

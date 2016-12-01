@@ -6,15 +6,20 @@
   <link rel="stylesheet" href="https://trello.com/power-ups/power-up.css"/>
 </head>
 <body>
-  <div id="page">
-    <p>Search for a card to add as a dependancy.</p>
-    <card-search />
-  </div>
 
-  <script src="./card-search.riot.js" type="riot/tag"></script>
+<div id="page">
+  <p>Search for a card to add as a dependancy.</p>
+  <card-search />
+  <hr>
+  <dependant-cards />
+</div>
 
-  <script>
-    riot.mount('*')
-  </script>
+<script src="./card-search.riot.js" type="riot/tag"></script>
+<script src="./dependant-cards.riot.js" type="riot/tag"></script>
+<script>
+  /* global riot */
+  riot.mount('*')
+</script>
+
 </body>
 </html>
