@@ -10,7 +10,7 @@ TrelloPowerUp.initialize({
       return [
         {
           icon: './images/trello-icon-999.svg',
-          text: dependants.length + ' Dependant cards'
+          text: 'Depends On ' + dependants.length + ' Cards'
         }
       ]
     })
@@ -20,10 +20,10 @@ TrelloPowerUp.initialize({
     return [
       {
         icon: './images/trello-icon-999.svg',
-        text: 'Dependant Cards',
+        text: 'Depends On',
         callback: function (t) {
           t.popup({
-            title: 'Dependant Cards',
+            title: 'Depends On',
             url: './button-popup.html'
           })
         }
